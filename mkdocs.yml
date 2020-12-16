@@ -1,0 +1,45 @@
+site_name: Doorman
+site_author: Equinix Metal Engineering Team
+dev_addr: 0.0.0.0:8000
+repo_name: doorman
+repo_url: https://github.com/equinix/doorman
+theme:
+  name: material
+  features:
+    - instant
+  palette:
+    scheme: slate
+    primary: deep orange
+    accent: green
+  icon:
+    logo: material/door
+extra_css:
+  - extra.css
+
+nav:
+  - Home: index.md
+  - Dev Environment:
+    - Install Tooling: development/tooling.md
+  - Testing:
+      - Manual testing: test/endtoend.md
+  - Architecture:
+    - Overview: architecture/overview.md
+
+markdown_extensions:
+  - toc:
+      permalink: 🔗
+      toc_depth: '2-3'
+  - admonition
+  - def_list
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.inlinehilite
+  - pymdownx.highlight
+
+copyright: Copyright &copy; 2020 <a href="https://metal.equinix.com">Equinix Metal</a>
+
+plugins:
+  - search
+  - git-revision-date-localized
+  - minify:
+      minify_html: true

@@ -1,0 +1,30 @@
+---
+version: '2.1'
+services:
+  server:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    hostname: doorman-${FACILITY:-lab1}.equinix.com
+    environment:
+      DOORMAN_API_HOST: https://api-internal.equinix.com
+      DOORMAN_CONSUMER_TOKEN: LEAVE_ME_LIKE_THIS
+      DOORMAN_MAGIC_IP: 127.0.0.1
+      GRPC_INSECURE: "yes"
+      FACILITY: ${FACILITY:-lab1}
+      EQUINIX_ENV: production
+      EQUINIX_VERSION: 42
+      ROLLBAR_TOKEN: 0
+      ROLLBAR_DISABLE: 1
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    extra_hosts:
+      - "doorman-${FACILITY:-lab1}.equinix.com:127.0.0.1"
+    network_mode: host
+    ports:
+      - 1194:1194 # openvpn
+    volumes:
+      - ./grpc/${FACILITY:-lab1}:/etc/openvpn/doorman-grpc
+      - ./pki/${FACILITY:-lab1}:/etc/openvpn/easy-rsa

@@ -1,0 +1,104 @@
+/* theme adjustment */
+.md-typeset a { font-size: 0.9em; }
+.md-typeset code {
+    color: white !important;
+    background-color: #42568b8f;
+}
+
+.md-typeset a code {
+    color: #94acff !important;
+}
+
+.md-typeset a:hover code {
+    text-decoration: underline;
+}
+
+/* size and align the headers on the home screen */
+.home-header {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+.home-header, .home-header a {
+    color: #e3e3e3;
+    text-decoration: none;
+}
+.home-header i {
+    vertical-align: left;
+    padding-right: 6px;
+}
+.home-header span { vertical-align: left; }
+
+/* home grid layout */
+.home-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.home-box {
+    flex-basis: calc(33.33% - 30px);
+    margin: 10px;
+    min-width: 200px;
+    min-height: 200px;
+
+    box-sizing: border-box;
+    padding: 19px;
+    background-color: #4fe01500;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+/* media */
+@media only screen and (max-width: 76.1875em) {
+    html .md-nav--primary .md-nav__title--site { background-color: #000000; }
+}
+@media only screen and (max-width: 59.9375em) {
+    .md-nav__source { background-color: #232323; }
+    .home-container { display: block; }
+    .home-box {
+        width: 100%;
+        margin: 0 0 10px 0;
+    }
+}
+
+.tabbed-set {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.tabbed-set .highlight {
+    background: #ddd;
+}
+
+.tabbed-set .tabbed-content {
+    display: none;
+    order: 99;
+    width: 100%;
+}
+
+.tabbed-set label {
+    width: auto;
+    margin: 0 0.5em;
+    padding: 0.25em;
+    font-size: 120%;
+    cursor: pointer;
+}
+
+.tabbed-set input {
+    position: absolute;
+    opacity: 0;
+}
+
+.tabbed-set input:nth-child(n+1) {
+    color: #333333;
+}
+
+.tabbed-set input:nth-child(n+1):checked + label {
+    color: #FF5252;
+}
+
+.tabbed-set input:nth-child(n+1):checked + label + .tabbed-content {
+    display: block;
+}

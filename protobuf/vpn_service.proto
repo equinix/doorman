@@ -1,0 +1,125 @@
+syntax = "proto3";
+package protobuf;
+
+service VPNService {
+    rpc ListConnections (ListConnectionsRequest) returns (ListConnectionsResponse);
+    rpc ListAllocations (ListAllocationsRequest) returns (ListAllocationsResponse);
+    rpc Disconnect (DisconnectRequest) returns (DisconnectResponse);
+    rpc Authenticate (AuthenticateRequest) returns (AuthenticateResponse);
+    rpc CreateClient (CreateClientRequest) returns (CreateClientResponse);
+    rpc GetClient (GetClientRequest) returns (GetClientResponse);
+    rpc RevokeClient (RevokeClientRequest) returns (RevokeClientResponse);
+    rpc ListClients (ListClientsRequest) returns (ListClientsResponse);
+}
+
+// MARK: disconnect request/response
+message DisconnectRequest {
+    string client = 1;
+}
+
+message DisconnectResponse {
+    int32 status = 1;
+}
+
+// MARK: list allocations request/response
+message ListAllocationsRequest {
+    string client = 1;
+    bool only_allocated = 2;
+}
+
+message ListAllocationsResponse {
+    repeated Allocation allocations = 1;
+}
+
+// MARK: list connections request/response
+message ListConnectionsResponse {
+    int32 total = 1;
+    repeated Connection connections = 2;
+}
+
+message ListConnectionsRequest {
+}
+
+// MARK: authenticate request/response
+message AuthenticateRequest {
+    string file = 1;
+    string client = 2;
+    string connecting_ip = 3;
+}
+
+message AuthenticateResponse {
+    int32 status = 1;
+}
+
+// MARK: connection
+message Connection {
+    string client = 1;
+    string username = 2;
+    Allocation allocation = 3;
+    repeated Route routes = 4;
+    int64 since = 5;
+    string connecting_ip = 6;
+}
+
+// MARK: allocation
+message Allocation {
+    string client = 1;
+    string ip = 2;
+}
+
+// MARK: Route
+message Route {
+    string cidr = 1;
+}
+
+// MARK: create client request/response
+message CreateClientRequest {
+    string client = 1;
+    bool force = 2;
+}
+
+message CreateClientResponse {
+    string config = 1;
+}
+
+// MARK: get client request/response
+message GetClientRequest {
+    string client = 1;
+}
+
+message GetClientResponse {
+    ClientStatus status = 1;
+    int64 expires_date = 2;
+    int64 revocation_date = 3;
+    string config = 4;
+}
+
+// MARK: revoke client request/response
+message RevokeClientRequest {
+    string client = 1;
+}
+
+message RevokeClientResponse {
+    int32 status = 1;
+}
+
+// MARK: list clients request/response
+message ListClientsRequest {
+}
+
+message ListClientsResponse {
+    repeated Client clients = 1;
+}
+
+message Client {
+    ClientStatus status = 1;
+    int64 expires_date = 2;
+    int64 revocation_date = 3;
+    string client = 4;
+}
+
+enum ClientStatus {
+    EXPIRED = 0;
+    VALID = 1;
+    REVOKED = 2;
+}
