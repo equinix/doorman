@@ -1,6 +1,6 @@
 # Doorman
 
-Doorman is a customer facing vpn service that gives access to their private subnets within their [Equinix Metal](https://metal.equinix.com/) environment.
+Doorman is a customer facing VPN service that gives access to their private subnets within their [Equinix Metal](https://metal.equinix.com/) environment.
 It works by managing OpenVPN credentials/authorization and iptables rules.
 All of the vpn tech is vanilla OpenVPN.
 
@@ -55,4 +55,4 @@ Password Example:
 123456P@ssw0rd
 ```
 
-To access the private IP addresses of instances in other facilities you must enable Backend Transfers, which you'll find under the "IP & Networking" menu of the Equinix Metal Console for your project.
+To access the private IP addresses of instances in other facilities you must enable "Backend Transfer", which you'll find under the "IP & Networking" menu of the Equinix Metal Console for your project.
