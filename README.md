@@ -4,6 +4,9 @@ Doorman is a customer facing VPN service that gives access to their private subn
 It works by managing OpenVPN credentials/authorization and iptables rules.
 All of the vpn tech is vanilla OpenVPN.
 
+# Note
+With the upcoming EoL of Equinix Metal on June 30, 2026, this repo is being archived on February 28, 2026.
+
 ## Documentation
 Install [make](https://www.gnu.org/software/make/#:~:text=GNU%20Make%20is%20a%20tool,compute%20it%20from%20other%20files.), [Docker](https://docs.docker.com/engine/install/) and run the following:  
 `make documentation`
